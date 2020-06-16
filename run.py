@@ -3,6 +3,8 @@ pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
 
+import torch
+
 import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
@@ -27,9 +29,11 @@ def normData(path: str):
 
     return data
 
-def train():
+def train(model):
     traindata = normData('/mnt/32D84D55D84D188D/NLP-data/nlp-getting-started/train.csv')
     testdata = normData('/mnt/32D84D55D84D188D/NLP-data/nlp-getting-started/test.csv')
+
+    optimizer = torch.optim.Adam(model.parameters(), lr= 0.0001)
 
 
 

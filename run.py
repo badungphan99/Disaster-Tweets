@@ -5,6 +5,8 @@ pd.set_option('display.width', 1000)
 
 import torch
 
+from gensim.models.keyedvectors import KeyedVectors
+
 import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
@@ -29,16 +31,19 @@ def normData(path: str):
 
     return data
 
-def train(model):
+def train():
     traindata = normData('/mnt/32D84D55D84D188D/NLP-data/nlp-getting-started/train.csv')
     testdata = normData('/mnt/32D84D55D84D188D/NLP-data/nlp-getting-started/test.csv')
 
-    optimizer = torch.optim.Adam(model.parameters(), lr= 0.0001)
+    # optimizer = torch.optim.Adam(model.parameters(), lr= 0.0001)
+
+    word_vectors = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True)
+    wv_matrix = []
 
 
 
 if __name__ == "__main__":
     #normalize data
     data = normData('/mnt/32D84D55D84D188D/NLP-data/nlp-getting-started/train.csv')
-
+    train()
     # vis.targetDistribution(data)
